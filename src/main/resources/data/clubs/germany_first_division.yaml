@@ -1,0 +1,198 @@
+clubs:
+  - name: "SV Malocher Gelsenkirchen"
+    identity:
+      tradition: 8
+      fanaticism: 10
+      glamour: 2
+      commercialism: 2
+      progressiveness: 3
+      discipline: 7
+      internationality: 3
+      youthFocus: 7
+
+  - name: "Banken-FC Frankfurt"
+    identity:
+      tradition: 5
+      fanaticism: 4
+      glamour: 9
+      commercialism: 10
+      progressiveness: 7
+      discipline: 8
+      internationality: 10
+      youthFocus: 5
+
+  - name: "SpVgg Tradition München"
+    identity:
+      tradition: 10
+      fanaticism: 8
+      glamour: 8
+      commercialism: 7
+      progressiveness: 3
+      discipline: 9
+      internationality: 8
+      youthFocus: 6
+
+  - name: "Matrosenfreunde Bremen"
+    identity:
+      tradition: 8
+      fanaticism: 7
+      glamour: 3
+      commercialism: 3
+      progressiveness: 5
+      discipline: 6
+      internationality: 6
+      youthFocus: 7
+
+  - name: "Urbania Berlin"
+    identity:
+      tradition: 4
+      fanaticism: 6
+      glamour: 7
+      commercialism: 5
+      progressiveness: 10
+      discipline: 4
+      internationality: 9
+      youthFocus: 8
+
+  - name: "FC Aurora Hamburg"
+    identity:
+      tradition: 6
+      fanaticism: 6
+      glamour: 7
+      commercialism: 4
+      progressiveness: 9
+      discipline: 5
+      internationality: 9
+      youthFocus: 7
+
+  - name: "R&D Karlsruhe"
+    identity:
+      tradition: 3
+      fanaticism: 3
+      glamour: 4
+      commercialism: 6
+      progressiveness: 8
+      discipline: 10
+      internationality: 7
+      youthFocus: 7
+
+  - name: "FC Germania Dresden"
+    identity:
+      tradition: 9
+      fanaticism: 9
+      glamour: 2
+      commercialism: 1
+      progressiveness: 2
+      discipline: 8
+      internationality: 2
+      youthFocus: 5
+
+  - name: "Bolzplatzfreunde Dortmund"
+    identity:
+      tradition: 8
+      fanaticism: 9
+      glamour: 4
+      commercialism: 2
+      progressiveness: 5
+      discipline: 5
+      internationality: 5
+      youthFocus: 9
+
+  - name: "Inter Köln"
+    identity:
+      tradition: 5
+      fanaticism: 6
+      glamour: 6
+      commercialism: 6
+      progressiveness: 9
+      discipline: 4
+      internationality: 10
+      youthFocus: 8
+
+  - name: "SSV Iuvenes Stuttgart"
+    identity:
+      tradition: 8
+      fanaticism: 5
+      glamour: 2
+      commercialism: 1
+      progressiveness: 7
+      discipline: 7
+      internationality: 3
+      youthFocus: 10
+
+  - name: "LV Glamour Düssseldorf"
+    identity:
+      tradition: 2
+      fanaticism: 4
+      glamour: 10
+      commercialism: 9
+      progressiveness: 6
+      discipline: 3
+      internationality: 9
+      youthFocus: 1
+
+  - name: "Ostblock Leipzig"
+    identity:
+      tradition: 10
+      fanaticism: 9
+      glamour: 1
+      commercialism: 1
+      progressiveness: 2
+      discipline: 9
+      internationality: 2
+      youthFocus: 5
+
+  - name: "FG Standard Essen"
+    identity:
+      tradition: 5
+      fanaticism: 5
+      glamour: 5
+      commercialism: 5
+      progressiveness: 5
+      discipline: 5
+      internationality: 5
+      youthFocus: 5
+
+  - name: "BV Franconia Nürnberg"
+    identity:
+      tradition: 9
+      fanaticism: 7
+      glamour: 4
+      commercialism: 4
+      progressiveness: 5
+      discipline: 7
+      internationality: 3
+      youthFocus: 6
+
+  - name: "Auto-Club Hannover"
+    identity:
+      tradition: 1
+      fanaticism: 3
+      glamour: 7
+      commercialism: 10
+      progressiveness: 8
+      discipline: 6
+      internationality: 7
+      youthFocus: 1
+
+  - name: "SAC Duisburg"
+    identity:
+      tradition: 4
+      fanaticism: 5
+      glamour: 2
+      commercialism: 5
+      progressiveness: 4
+      discipline: 9
+      internationality: 4
+      youthFocus: 2
+
+  - name: "Mainzer Fastnachtkicker"
+    identity:
+      tradition: 9
+      fanaticism: 6
+      glamour: 8
+      commercialism: 4
+      progressiveness: 5
+      discipline: 2
+      internationality: 5
+      youthFocus: 6

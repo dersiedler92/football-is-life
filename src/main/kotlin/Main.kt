@@ -1,19 +1,24 @@
-package com.fil
-
 import androidx.compose.desktop.ui.tooling.preview.Preview
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.toComposeImageBitmap
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPlacement
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
+import java.io.BufferedInputStream
+import javax.imageio.ImageIO
+import kotlin.random.Random
 
 fun main() = application {
+
     val windowState = rememberWindowState(
-        placement = WindowPlacement.Fullscreen
+        placement = WindowPlacement.Maximized
     )
 
     Window(
@@ -37,14 +42,35 @@ fun main() = application {
 fun App(
     onQuitGame: () -> Unit
 ) {
+
+    LaunchedEffect(Unit) {
+        BgmPlayer.playLoop("/bgm/opening.wav")
+    }
+
+    val backgroundImage = remember {
+        loadImageBitmap("/images/title.png")
+    }
+
+
     MaterialTheme {
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
+        Box(
+            modifier = Modifier.fillMaxSize()
         ) {
-            MainScreen(
-                onQuitGame = onQuitGame
+            Image(
+                bitmap = backgroundImage,
+                contentDescription = null,
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop
             )
+
+            Surface(
+                modifier = Modifier.fillMaxSize(),
+                color = MaterialTheme.colorScheme.background.copy(alpha = 0.65f)
+            ) {
+                MainScreen(
+                    onQuitGame = onQuitGame
+                )
+            }
         }
     }
 }
@@ -53,9 +79,15 @@ fun App(
 fun MainScreen(
     onQuitGame: () -> Unit
 ) {
-    var selectedMenu by remember { mutableStateOf(MainMenu.DASHBOARD) }
 
-    Row(modifier = Modifier.fillMaxSize()) {
+    var selectedMenu by remember {
+        mutableStateOf(MainMenu.NEW_GAME)
+    }
+
+    Row(
+        modifier = Modifier.fillMaxSize()
+    ) {
+
         Sidebar(
             selected = selectedMenu,
             onSelect = { selectedMenu = it },
@@ -67,21 +99,28 @@ fun MainScreen(
                 .fillMaxSize()
                 .padding(24.dp)
         ) {
+
             when (selectedMenu) {
-                MainMenu.DASHBOARD -> DashboardScreen()
-                MainMenu.SQUAD -> SquadScreen()
-                MainMenu.MATCH -> MatchScreen()
-                MainMenu.CLUB -> ClubScreen()
+
+                MainMenu.NEW_GAME -> NewGameScreen()
+
+                MainMenu.SETTINGS -> SettingsScreen()
+
+                MainMenu.ABOUT -> AboutScreen()
             }
         }
     }
 }
 
-enum class MainMenu(val label: String) {
-    DASHBOARD("Dashboard"),
-    SQUAD("Kader"),
-    MATCH("Spiel"),
-    CLUB("Verein")
+enum class MainMenu(
+    val label: String
+) {
+
+    NEW_GAME("New Game"),
+
+    SETTINGS("Settings"),
+
+    ABOUT("About")
 }
 
 @Composable
@@ -93,43 +132,50 @@ fun Sidebar(
     Surface(
         modifier = Modifier
             .fillMaxHeight()
-            .width(220.dp),
-        tonalElevation = 4.dp
+            .width(280.dp),
+        color = MaterialTheme.colorScheme.surface.copy(alpha = 0.88f),
+        tonalElevation = 8.dp
     ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+                .padding(24.dp)
         ) {
             Text(
-                text = "Football Legacy",
-                style = MaterialTheme.typography.titleLarge
+                text = "Football is Life",
+                style = MaterialTheme.typography.headlineMedium,
+                color = MaterialTheme.colorScheme.onSurface
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(
+                modifier = Modifier.height(6.dp)
+            )
+
+            Text(
+                text = "Manager Console",
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.65f)
+            )
+
+            Spacer(modifier = Modifier.height(32.dp))
 
             MainMenu.entries.forEach { item ->
-                Button(
-                    onClick = { onSelect(item) },
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = if (item == selected) {
-                        ButtonDefaults.buttonColors()
-                    } else {
-                        ButtonDefaults.outlinedButtonColors()
-                    }
-                ) {
-                    Text(item.label)
-                }
+                NavigationItem(
+                    label = item.label,
+                    selected = item == selected,
+                    onClick = { onSelect(item) }
+                )
+
+                Spacer(modifier = Modifier.height(8.dp))
             }
 
             Spacer(modifier = Modifier.weight(1f))
 
-            Button(
+            OutlinedButton(
                 onClick = onQuitGame,
                 modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.error
+                colors = ButtonDefaults.outlinedButtonColors(
+                    contentColor = MaterialTheme.colorScheme.error
                 )
             ) {
                 Text("Quit Game")
@@ -139,24 +185,78 @@ fun Sidebar(
 }
 
 @Composable
-fun DashboardScreen() {
-    Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-        Text(
-            "Dashboard",
-            style = MaterialTheme.typography.headlineMedium
-        )
-
-        Text(
-            "Willkommen, Trainer. Deine Reise beginnt in der untersten Liga."
-        )
+fun NavigationItem(
+    label: String,
+    selected: Boolean,
+    onClick: () -> Unit
+) {
+    Surface(
+        onClick = onClick,
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(48.dp),
+        shape = MaterialTheme.shapes.large,
+        color = if (selected) {
+            MaterialTheme.colorScheme.primary
+        } else {
+            MaterialTheme.colorScheme.surface.copy(alpha = 0.0f)
+        },
+        contentColor = if (selected) {
+            MaterialTheme.colorScheme.onPrimary
+        } else {
+            MaterialTheme.colorScheme.onSurface.copy(alpha = 0.78f)
+        }
+    ) {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = androidx.compose.ui.Alignment.Center
+        ) {
+            Text(label)
+        }
     }
 }
 
 @Composable
-fun SquadScreen() {
-    Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+fun NewGameScreen() {
+
+    Column(
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+
         Text(
-            "Kader",
+            "New Game",
+            style = MaterialTheme.typography.headlineMedium
+        )
+
+        val world = remember {
+            GameCreator.createNewGame()
+        }
+
+        val random = Random(world.seed)
+
+        val names = remember {
+            List(10) {
+                GermanNameGenerator.generate(random)
+            }
+        }
+
+        names.forEach { name ->
+            Text(name)
+        }
+
+        Text ("Der World-Seed lautet: " + world.seed)
+    }
+}
+
+@Composable
+fun SettingsScreen() {
+
+    Column(
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+
+        Text(
+            "Settings",
             style = MaterialTheme.typography.headlineMedium
         )
 
@@ -165,9 +265,11 @@ fun SquadScreen() {
             "Luis Ferreira - ST - 58%",
             "Jonas Eberhardt - TW - 66%"
         ).forEach { player ->
+
             Card(
                 modifier = Modifier.fillMaxWidth()
             ) {
+
                 Text(
                     text = player,
                     modifier = Modifier.padding(16.dp)
@@ -178,29 +280,35 @@ fun SquadScreen() {
 }
 
 @Composable
-fun MatchScreen() {
-    Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+fun AboutScreen() {
+
+    Column(
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+
         Text(
-            "Match Engine",
+            "About Football Is Life",
             style = MaterialTheme.typography.headlineMedium
         )
 
         Text(
-            "Hier kommt später das 3x6-Zonenfeld mit Duellen rein."
+            "Football Is Life ist ein storygetriebener Fußballmanager über Vereinsidentität, Aufstieg, Loyalität und dramatische Fußballmomente."
+        )
+
+        Text(
+            "Version: 1.0.0"
+        )
+
+        Text(
+            "Built with Kotlin + Compose Desktop."
         )
     }
 }
 
-@Composable
-fun ClubScreen() {
-    Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-        Text(
-            "Verein",
-            style = MaterialTheme.typography.headlineMedium
-        )
-
-        Text(
-            "Identität, Fans, Stadion, Jugendcamp und Vereinsgeschichte."
-        )
-    }
-}
+fun loadImageBitmap(resourcePath: String) =
+    object {}::class.java
+        .getResourceAsStream(resourcePath)
+        ?.let { BufferedInputStream(it) }
+        ?.use { ImageIO.read(it) }
+        ?.toComposeImageBitmap()
+        ?: error("Could not load image: $resourcePath")
