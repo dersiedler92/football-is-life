@@ -1,5 +1,6 @@
 clubs:
   - name: "SV Malocher Gelsenkirchen"
+    city: "Gelsenkirchen"
     identity:
       tradition: 8
       fanaticism: 10
@@ -11,6 +12,7 @@ clubs:
       youthFocus: 7
 
   - name: "Banken-FC Frankfurt"
+    city: "Frankfurt"
     identity:
       tradition: 5
       fanaticism: 4
@@ -22,6 +24,7 @@ clubs:
       youthFocus: 5
 
   - name: "SpVgg Tradition München"
+    city: "München"
     identity:
       tradition: 10
       fanaticism: 8
@@ -33,6 +36,7 @@ clubs:
       youthFocus: 6
 
   - name: "Matrosenfreunde Bremen"
+    city: "Bremen"
     identity:
       tradition: 8
       fanaticism: 7
@@ -44,6 +48,7 @@ clubs:
       youthFocus: 7
 
   - name: "Urbania Berlin"
+    city: "Berlin"
     identity:
       tradition: 4
       fanaticism: 6
@@ -55,6 +60,7 @@ clubs:
       youthFocus: 8
 
   - name: "FC Aurora Hamburg"
+    city: "Hamburg"
     identity:
       tradition: 6
       fanaticism: 6
@@ -66,6 +72,7 @@ clubs:
       youthFocus: 7
 
   - name: "R&D Karlsruhe"
+    city: "Karlsruhe"
     identity:
       tradition: 3
       fanaticism: 3
@@ -77,6 +84,7 @@ clubs:
       youthFocus: 7
 
   - name: "FC Germania Dresden"
+    city: "Dresden"
     identity:
       tradition: 9
       fanaticism: 9
@@ -88,6 +96,7 @@ clubs:
       youthFocus: 5
 
   - name: "Bolzplatzfreunde Dortmund"
+    city: "Dortmund"
     identity:
       tradition: 8
       fanaticism: 9
@@ -99,6 +108,7 @@ clubs:
       youthFocus: 9
 
   - name: "Inter Köln"
+    city: "Köln"
     identity:
       tradition: 5
       fanaticism: 6
@@ -110,6 +120,7 @@ clubs:
       youthFocus: 8
 
   - name: "SSV Iuvenes Stuttgart"
+    city: "Stuttgart"
     identity:
       tradition: 8
       fanaticism: 5
@@ -121,6 +132,7 @@ clubs:
       youthFocus: 10
 
   - name: "LV Glamour Düssseldorf"
+    city: "Düsseldorf"
     identity:
       tradition: 2
       fanaticism: 4
@@ -132,6 +144,7 @@ clubs:
       youthFocus: 1
 
   - name: "Ostblock Leipzig"
+    city: "Leipzig"
     identity:
       tradition: 10
       fanaticism: 9
@@ -143,6 +156,7 @@ clubs:
       youthFocus: 5
 
   - name: "FG Standard Essen"
+    city: "Essen"
     identity:
       tradition: 5
       fanaticism: 5
@@ -154,6 +168,7 @@ clubs:
       youthFocus: 5
 
   - name: "BV Franconia Nürnberg"
+    city: "Nürnberg"
     identity:
       tradition: 9
       fanaticism: 7
@@ -165,6 +180,7 @@ clubs:
       youthFocus: 6
 
   - name: "Auto-Club Hannover"
+    city: "Hannover"
     identity:
       tradition: 1
       fanaticism: 3
@@ -176,6 +192,7 @@ clubs:
       youthFocus: 1
 
   - name: "SAC Duisburg"
+    city: "Duisburg"
     identity:
       tradition: 4
       fanaticism: 5
@@ -187,6 +204,7 @@ clubs:
       youthFocus: 2
 
   - name: "Mainzer Fastnachtkicker"
+    city: "Mainz"
     identity:
       tradition: 9
       fanaticism: 6
