@@ -12,13 +12,12 @@ class SaveGameRepository(
 ) {
 
     fun persistNewWorld(
-        saveGameId: Long,
         saveName: String,
         world: World
-    ) {
+    ): Long {
         val now = Clock.System.now().toString()
 
-        database.transaction {
+        return database.transactionWithResult {
             database.schemaQueries.insertSaveGame(
                 name = saveName,
                 seed = world.seed,
@@ -34,19 +33,14 @@ class SaveGameRepository(
                     .executeAsOne()
 
             world.teams.forEach { team ->
-                insertTeam(
-                    saveGameId = saveGameId,
-                    team = team
-                )
+                insertTeam(saveGameId, team)
 
                 team.squad.forEach { player ->
-                    insertPlayer(
-                        saveGameId = saveGameId,
-                        teamId = team.teamId.toLong(),
-                        player = player
-                    )
+                    insertPlayer(saveGameId, team.teamId.toLong(), player)
                 }
             }
+
+            saveGameId
         }
     }
 

@@ -6,5 +6,6 @@ import kotlinx.serialization.Serializable
 data class Club(
     val name: String,
     val city: String,
+    val pathToCrest: String,
     val identity: ClubIdentity
 )

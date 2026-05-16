@@ -25,6 +25,7 @@ object TeamGenerator {
             name = club.name,
             city = extractCity(club.name),
             country = "Germany",
+            pathToCrest = club.pathToCrest,
             squad = players,
             teamStats = generateTeamStats(club)
         )

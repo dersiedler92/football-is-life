@@ -8,6 +8,7 @@ data class Team(
     val name: String,
     val city: String,
     val country: String,
+    val pathToCrest: String,
     val squad: List<Player>,
     val teamStats: TeamStats
 ) {

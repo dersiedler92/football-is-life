@@ -1,6 +1,7 @@
 clubs:
   - name: "SV Malocher Gelsenkirchen"
     city: "Gelsenkirchen"
+    pathToCrest: "/images/teams/german/malocher.png"
     identity:
       tradition: 8
       fanaticism: 10
@@ -13,6 +14,7 @@ clubs:
 
   - name: "Banken-FC Frankfurt"
     city: "Frankfurt"
+    pathToCrest: "/images/teams/german/banker.png"
     identity:
       tradition: 5
       fanaticism: 4
@@ -25,6 +27,7 @@ clubs:
 
   - name: "SpVgg Tradition München"
     city: "München"
+    pathToCrest: "/images/teams/german/tradition.png"
     identity:
       tradition: 10
       fanaticism: 8
@@ -37,6 +40,7 @@ clubs:
 
   - name: "Matrosenfreunde Bremen"
     city: "Bremen"
+    pathToCrest: "/images/teams/german/matrosen.png"
     identity:
       tradition: 8
       fanaticism: 7
@@ -49,6 +53,7 @@ clubs:
 
   - name: "Urbania Berlin"
     city: "Berlin"
+    pathToCrest: "/images/teams/german/urbania.png"
     identity:
       tradition: 4
       fanaticism: 6
@@ -61,6 +66,7 @@ clubs:
 
   - name: "FC Aurora Hamburg"
     city: "Hamburg"
+    pathToCrest: "/images/teams/german/aurora.png"
     identity:
       tradition: 6
       fanaticism: 6
@@ -73,6 +79,7 @@ clubs:
 
   - name: "R&D Karlsruhe"
     city: "Karlsruhe"
+    pathToCrest: "/images/teams/german/rnd.png"
     identity:
       tradition: 3
       fanaticism: 3
@@ -85,6 +92,7 @@ clubs:
 
   - name: "FC Germania Dresden"
     city: "Dresden"
+    pathToCrest: "/images/teams/german/germania.png"
     identity:
       tradition: 9
       fanaticism: 9
@@ -97,6 +105,7 @@ clubs:
 
   - name: "Bolzplatzfreunde Dortmund"
     city: "Dortmund"
+    pathToCrest: "/images/teams/german/bolzplatz.png"
     identity:
       tradition: 8
       fanaticism: 9
@@ -109,6 +118,7 @@ clubs:
 
   - name: "Inter Köln"
     city: "Köln"
+    pathToCrest: "/images/teams/german/inter.png"
     identity:
       tradition: 5
       fanaticism: 6
@@ -121,6 +131,7 @@ clubs:
 
   - name: "SSV Iuvenes Stuttgart"
     city: "Stuttgart"
+    pathToCrest: "/images/teams/german/iuvenes.png"
     identity:
       tradition: 8
       fanaticism: 5
@@ -133,6 +144,7 @@ clubs:
 
   - name: "LV Glamour Düssseldorf"
     city: "Düsseldorf"
+    pathToCrest: "/images/teams/german/glamour.png"
     identity:
       tradition: 2
       fanaticism: 4
@@ -145,6 +157,7 @@ clubs:
 
   - name: "Ostblock Leipzig"
     city: "Leipzig"
+    pathToCrest: "/images/teams/german/ostblock.png"
     identity:
       tradition: 10
       fanaticism: 9
@@ -157,6 +170,7 @@ clubs:
 
   - name: "FG Standard Essen"
     city: "Essen"
+    pathToCrest: "/images/teams/german/standard.png"
     identity:
       tradition: 5
       fanaticism: 5
@@ -169,6 +183,7 @@ clubs:
 
   - name: "BV Franconia Nürnberg"
     city: "Nürnberg"
+    pathToCrest: "/images/teams/german/franconia.png"
     identity:
       tradition: 9
       fanaticism: 7
@@ -181,6 +196,7 @@ clubs:
 
   - name: "Auto-Club Hannover"
     city: "Hannover"
+    pathToCrest: "/images/teams/german/auto.png"
     identity:
       tradition: 1
       fanaticism: 3
@@ -193,6 +209,7 @@ clubs:
 
   - name: "SAC Duisburg"
     city: "Duisburg"
+    pathToCrest: "/images/teams/german/stahl.png"
     identity:
       tradition: 4
       fanaticism: 5
@@ -205,6 +222,7 @@ clubs:
 
   - name: "Mainzer Fastnachtkicker"
     city: "Mainz"
+    pathToCrest: "/images/teams/german/fastnacht.png"
     identity:
       tradition: 9
       fanaticism: 6

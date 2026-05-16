@@ -8,84 +8,81 @@ import androidx.compose.ui.unit.dp
 import com.fil.database.DatabaseFactory
 import com.fil.database.SaveGameRepository
 import com.fil.world.GameCreator
+import com.fil.world.World
 import kotlin.random.Random
 
 @Composable
 fun NewGameScreen() {
-    var saveName by remember { mutableStateOf("My First Club Story") }
-    var seedText by remember { mutableStateOf(Random.nextLong().toString()) }
-    var statusText by remember { mutableStateOf<String?>(null) }
 
-    Column(
-        modifier = Modifier.width(520.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
-        Text(
-            "New Game",
-            style = MaterialTheme.typography.headlineMedium
-        )
+    var saveName by remember {
+        mutableStateOf("My First Club Story")
+    }
 
-        Text(
-            "Create a seeded football world with generated clubs, teams and players."
-        )
+    var seedText by remember {
+        mutableStateOf(Random.nextLong().toString())
+    }
 
-        OutlinedTextField(
-            value = saveName,
-            onValueChange = { saveName = it },
-            label = { Text("Save name") },
-            modifier = Modifier.fillMaxWidth(),
-            singleLine = true
-        )
+    var generatedWorld by remember {
+        mutableStateOf<World?>(null)
+    }
 
-        OutlinedTextField(
-            value = seedText,
-            onValueChange = { seedText = it },
-            label = { Text("World seed") },
-            modifier = Modifier.fillMaxWidth(),
-            singleLine = true
-        )
+    if (generatedWorld == null) {
 
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(12.dp)
+        Column(
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Button(
-                onClick = {
-                    seedText = Random.nextLong().toString()
-                    statusText = null
-                }
-            ) {
-                Text("Randomize Seed")
-            }
+
+            Text(
+                "New Game",
+                style = MaterialTheme.typography.headlineMedium
+            )
+
+            OutlinedTextField(
+                value = saveName,
+                onValueChange = { saveName = it },
+                label = { Text("Save name") }
+            )
+
+            OutlinedTextField(
+                value = seedText,
+                onValueChange = { seedText = it },
+                label = { Text("World seed") }
+            )
 
             Button(
                 onClick = {
-                    val seed = seedText.toLongOrNull()
 
-                    if (seed == null) {
-                        statusText = "Invalid seed. Use a whole number."
-                        return@Button
-                    }
+                    val seed =
+                        seedText.toLongOrNull()
+                            ?: Random.nextLong()
 
-                    val world = GameCreator.createNewGame(seed)
-                    val database = DatabaseFactory.createDatabase(resetDatabase = true)
-                    val repository = SaveGameRepository(database)
-
-                    repository.persistNewWorld(
-                        saveGameId = 1L,
-                        saveName = saveName.ifBlank { "Unnamed Save" },
-                        world = world
-                    )
-
-                    statusText =
-                        "Created world with ${world.teams.size} teams and ${world.teams.sumOf { it.squad.size }} players."
+                    generatedWorld =
+                        GameCreator.createNewGame(seed)
                 }
             ) {
-                Text("Create World")
+                Text("Generate World")
             }
         }
 
-        statusText?.let {
-            Text(it)
-        }
+    } else {
+
+        TeamSelectionScreen(
+            world = generatedWorld!!,
+            onTeamSelected = { selectedTeam ->
+
+                val database =
+                    DatabaseFactory.createDatabase()
+
+                val repository =
+                    SaveGameRepository(database)
+
+                val saveGameId = repository.persistNewWorld(
+                    saveName = saveName,
+                    world = generatedWorld!!
+                )
+
+                println("Selected Team: ${selectedTeam.name}")
+            }
+        )
     }
 }
