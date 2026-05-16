@@ -9,33 +9,27 @@ CREATE TABLE save_games (
 );
 
 CREATE TABLE teams (
-    team_id INTEGER NOT NULL PRIMARY KEY,
     save_game_id INTEGER NOT NULL,
-    name TEXT NOT NULL,
-    city TEXT NOT NULL,
-    country TEXT NOT NULL,
+    team_id INTEGER NOT NULL,
     team_json TEXT NOT NULL,
 
-    FOREIGN KEY(save_game_id) REFERENCES save_games(save_game_id)
+    PRIMARY KEY (save_game_id, team_id),
+    FOREIGN KEY (save_game_id) REFERENCES save_games(save_game_id) ON DELETE CASCADE
 );
 
 CREATE TABLE players (
-    player_id INTEGER NOT NULL PRIMARY KEY,
     save_game_id INTEGER NOT NULL,
     team_id INTEGER NOT NULL,
-    name TEXT NOT NULL,
-    position TEXT NOT NULL,
-    birthday TEXT NOT NULL,
-    nationality TEXT NOT NULL,
+    player_id INTEGER NOT NULL,
     player_json TEXT NOT NULL,
 
-    FOREIGN KEY(save_game_id) REFERENCES save_games(save_game_id),
-    FOREIGN KEY(team_id) REFERENCES teams(team_id)
+    PRIMARY KEY (save_game_id, player_id),
+    FOREIGN KEY (save_game_id) REFERENCES save_games(save_game_id) ON DELETE CASCADE,
+    FOREIGN KEY (save_game_id, team_id) REFERENCES teams(save_game_id, team_id) ON DELETE CASCADE
 );
 
 insertSaveGame:
 INSERT INTO save_games(
-    save_game_id,
     name,
     seed,
     created_at,
@@ -43,33 +37,27 @@ INSERT INTO save_games(
     current_date,
     world_json
 )
-VALUES (?, ?, ?, ?, ?, ?, ?);
+VALUES (?, ?, ?, ?, ?, ?);
 
 insertTeam:
 INSERT INTO teams(
-    team_id,
     save_game_id,
-    name,
-    city,
-    country,
+    team_id,
     team_json
 )
-VALUES (?, ?, ?, ?, ?, ?);
+VALUES (?, ?, ?);
 
 insertPlayer:
 INSERT INTO players(
-    player_id,
     save_game_id,
     team_id,
-    name,
-    position,
-    birthday,
-    nationality,
-    overall_rating,
-    potential_rating,
+    player_id,
     player_json
 )
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+VALUES (?, ?, ?, ?);
+
+lastInsertRowId:
+SELECT last_insert_rowid();
 
 selectAllSaveGames:
 SELECT * FROM save_games;
@@ -88,7 +76,8 @@ WHERE save_game_id = ?;
 
 selectPlayersByTeamId:
 SELECT * FROM players
-WHERE team_id = ?;
+WHERE save_game_id = ?
+AND team_id = ?;
 
 deleteSaveGameById:
 DELETE FROM save_games

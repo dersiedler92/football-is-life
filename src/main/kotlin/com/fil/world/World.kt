@@ -3,7 +3,9 @@ package com.fil.world
 import com.fil.data.Club
 import com.fil.data.Team
 import kotlinx.datetime.LocalDate
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class World(
     val seed: Long,
     val currentDate: LocalDate,
